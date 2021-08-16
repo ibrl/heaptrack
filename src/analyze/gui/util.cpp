@@ -221,3 +221,34 @@ const QString& Util::unresolvedFunctionName()
     static QString msg = i18n("<unresolved function>");
     return msg;
 }
+
+
+QString Util::elideAngleBracket(const QString &text)
+{
+    static QChar startBracket = QChar(u'<');
+    static QChar stopBracket  = QChar(u'>');
+
+    int level = 0;
+    QString result;
+    for (int i=0, n = text.length(); i < n; i++)  {
+        QChar currentChar = text[i];
+        if (currentChar == QChar(startBracket) && level == 0) {
+            result += QChar(startBracket);
+            level++;
+        }
+        else if (currentChar == QChar(startBracket) && level > 0) {
+            level++;
+        }
+        else if (currentChar == QChar(stopBracket) && level == 1) {
+            result += QString::fromUtf8("...>");
+            level--;
+        }
+        else if (currentChar == QChar(stopBracket) && level > 1) {
+            level--;
+        }
+        else if (level == 0) {
+            result += currentChar;
+        }
+    }
+    return result;
+}

@@ -29,7 +29,6 @@ add_definitions(-Wall
 add_library(heaptrack_gui_private STATIC
     util.cpp
     parser.cpp
-    middleelide.cpp
 )
 target_link_libraries(heaptrack_gui_private PUBLIC
     KF5::I18n

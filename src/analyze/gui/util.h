@@ -39,6 +39,7 @@ QString formatTooltip(const Symbol& symbol, const AllocationData& selfCosts, con
                       const ResultData& resultDat);
 QString formatTooltip(const FileLine& location, const AllocationData& selfCosts, const AllocationData& inclusiveCosts,
                       const ResultData& resultDat);
+QString elideAngleBracket(const QString& text);
 
 enum FormatType
 {
